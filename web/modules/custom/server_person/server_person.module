@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Pluggable entity view builder example module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function server_person_theme($existing, $type, $theme, $path) {
+  $info = [];
+
+  $info['server_person_card'] = [
+    'variables' => [
+      'title' => NULL,
+      'subtitle' => NULL,
+      'role' => FALSE,
+      'image' => NULL,
+      'image_alt' => NULL,
+    ],
+  ];
+
+  return $info;
+}
