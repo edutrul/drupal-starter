@@ -18,6 +18,8 @@ function server_person_theme($existing, $type, $theme, $path) {
       'role' => FALSE,
       'image' => NULL,
       'image_alt' => NULL,
+      'phone' => NULL,
+      'email' => NULL,
     ],
   ];
 

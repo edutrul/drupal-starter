@@ -4,8 +4,9 @@ namespace Drupal\server_person\Plugin\EntityViewBuilder;
 
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\pluggable_entity_view_builder\EntityViewBuilderPluginAbstract;
-use Drupal\pluggable_entity_view_builder_example\ProcessedTextBuilderTrait;
-use Drupal\pluggable_entity_view_builder_example\TagBuilderTrait;
+use Drupal\server_general\ProcessedTextBuilderTrait;
+use Drupal\server_general\ThemeTrait\ElementWrapThemeTrait;
+use Drupal\server_general\ThemeTrait\PeopleTeasersThemeTrait;
 
 /**
  * The Person Card paragraph plugin.
@@ -19,7 +20,8 @@ use Drupal\pluggable_entity_view_builder_example\TagBuilderTrait;
 class ParagraphPerson extends EntityViewBuilderPluginAbstract {
 
   use ProcessedTextBuilderTrait;
-  use TagBuilderTrait;
+  use ElementWrapThemeTrait;
+  use PeopleTeasersThemeTrait;
 
   /**
    * Build full view mode.
@@ -33,14 +35,18 @@ class ParagraphPerson extends EntityViewBuilderPluginAbstract {
    *   Render array.
    */
   public function buildFull(array $build, ParagraphInterface $entity): array {
-    $element = [];
-    $element['#theme'] = 'server_person_card';
-    $element['#title'] = $this->getTextFieldValue($entity, 'field_title');
-    $element['#subtitle'] = $this->getTextFieldValue($entity, 'field_subtitle');
-    $element['#role'] = $this->getTextFieldValue($entity, 'field_role');
-    $image = $this->getMediaImageAndAlt($entity, 'field_image', 'thumbnail');
-    $element['#image'] = $image['url'];
-    $element['#image_alt'] = $image['alt'];
+    $name = $this->getTextFieldValue($entity, 'field_title');
+
+    $image = $this->getMediaImageAndAlt($entity, 'field_image');
+    $image_url = !empty($image['url']) ? $image['url'] : '';
+    $image_alt = !empty($image['alt']) ? $image['alt'] : $name;
+
+    $element = $this->buildElementPersonTeaser(
+      $image_url,
+      $image_alt,
+      $name,
+      $this->getTextFieldValue($entity, 'field_subtitle'),
+    );
 
     $build[] = $element;
 
