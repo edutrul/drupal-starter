@@ -2,9 +2,9 @@
 
 namespace Drupal\server_og\Plugin\EntityViewBuilder;
 
-use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 use Drupal\pluggable_entity_view_builder\EntityViewBuilderPluginAbstract;
+use Drupal\pluggable_entity_view_builder_example\ProcessedTextBuilderTrait;
 
 /**
  * The "Node Group" plugin.
@@ -16,6 +16,8 @@ use Drupal\pluggable_entity_view_builder\EntityViewBuilderPluginAbstract;
  * )
  */
 class NodeGroup extends EntityViewBuilderPluginAbstract {
+
+  use ProcessedTextBuilderTrait;
 
   /**
    * Build full view mode.
@@ -30,27 +32,10 @@ class NodeGroup extends EntityViewBuilderPluginAbstract {
    */
   public function buildFull(array $build, NodeInterface $entity) {
 
-    $this->messenger()->addMessage('Add your Node News elements in \Drupal\server_general\Plugin\EntityViewBuilder\NodeNews');
+    $this->messenger()->addMessage('Add your Node Organic Group elements in \Drupal\server_og\Plugin\EntityViewBuilder\NodeGroup');
 
-    // The node's label.
-    $node_type = $this->entityTypeManager->getStorage('node_type')->load($entity->bundle());
-    $label = $node_type->label();
-
-    // The hero responsive image.
-    $medias = $entity->get('field_featured_image')->referencedEntities();
-    $image = $this->buildEntities($medias, 'hero');
-
-    $element = $this->buildElementNodeNews(
-      $entity->label(),
-      $label,
-      $this->getFieldOrCreatedTimestamp($entity, 'field_publish_date'),
-      $image,
-      $this->buildProcessedText($entity),
-      $this->buildTags($entity),
-      $this->buildSocialShare($entity),
-    );
-
-    $build[] = $element;
+    // Body.
+    $build[] = $this->buildProcessedText($entity);
 
     return $build;
   }
