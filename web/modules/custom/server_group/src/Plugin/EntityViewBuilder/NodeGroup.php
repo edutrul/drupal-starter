@@ -25,11 +25,8 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
 
     $current_user = \Drupal::currentUser();
 
-    // Only for OG groups.
+    // Extra safety: only act if this bundle is a registered OG group.
     if (!Og::isGroup($entity->getEntityTypeId(), $entity->bundle())) {
-      // Not a group: render normally.
-      // @todo: implement methods for rendering the rest of the fields.
-      $build[] = ['#markup' => $entity->label()];
       return $build;
     }
 
@@ -46,23 +43,30 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
     }
 
     $membership_manager = \Drupal::service('og.membership_manager');
-    $is_member = $membership_manager->isMember($entity, $current_user);
+    $og_access = \Drupal::service('og.access');
 
-    if (!$is_member) {
+    $is_member = $membership_manager->isMember($entity, $current_user);
+    // Check is NOT member and that the subscribe OG access is allowed.
+    if (!$is_member && $og_access->userAccess($entity, 'subscribe', $current_user)) {
       // Build subscribe prompt.
       $join_url = Url::fromRoute('server_group.group_join', [
         'node' => $entity->id(),
       ], ['query' => ['destination' => \Drupal::service('path.current')->getPath()]]);
 
       $build['server_group_subscribe_prompt'] = [
-        '#theme'  => 'server_group_subscribe_prompt',
-        '#name'   => $current_user->getDisplayName(),
-        '#label'  => $entity->label(),
-        '#url'    => $join_url->toString(),
-        '#cache'  => ['contexts' => ['user'], 'tags' => $entity->getCacheTags()],
+        '#theme' => 'server_group_subscribe_prompt',
+        '#name' => $current_user->getDisplayName(),
+        '#label' => $entity->label(),
+        '#url' => $join_url->toString(),
+        '#cache' => ['contexts' => ['user'], 'tags' => $entity->getCacheTags()],
       ];
-
     }
+    // Here means that effectively it has access to see content.
+    else {
+      // @todo: implement methods for rendering the rest of the fields.
+      $build[] = ['#markup' => $entity->label()];
+    }
+
     return $build;
   }
 
