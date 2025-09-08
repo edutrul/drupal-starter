@@ -71,6 +71,10 @@ final class JoinGroupController extends ControllerBase {
     $membership = $membership_manager->createMembership($node, $user);
     $membership->save();
 
+    \Drupal::service('cache_tags.invalidator')->invalidateTags(
+      array_merge($node->getCacheTags(), $membership->getCacheTags())
+    );
+
     $this->messenger()->addStatus($this->t('Welcome! You have subscribed to %label.', ['%label' => $node->label()]));
 
     // Redirect to the requested destination (if provided), or back to the group.

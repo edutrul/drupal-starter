@@ -2,6 +2,7 @@
 
 namespace Drupal\server_group\Plugin\EntityViewBuilder;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\og\Og;
@@ -30,6 +31,10 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
       return $build;
     }
 
+    // Ensure page varies per user and is tagged with the node.
+    $build['#cache']['contexts'] = array_unique(array_merge($build['#cache']['contexts'] ?? [], ['user']));
+    $build['#cache']['tags'] = Cache::mergeTags($build['#cache']['tags'] ?? [], $entity->getCacheTags());
+
     // Anonymous: only invite to subscribe (no body).
     if ($current_user->isAnonymous()) {
       $build['server_group_subscribe_prompt'] = [
@@ -47,7 +52,7 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
 
     $is_member = $membership_manager->isMember($entity, $current_user);
     // Check is NOT member and that the subscribe OG access is allowed.
-    if (!$is_member && $og_access->userAccess($entity, 'subscribe', $current_user)) {
+    if (!$is_member  || $og_access->userAccess($entity, 'subscribe', $current_user)->isAllowed()) {
       // Build subscribe prompt.
       $join_url = Url::fromRoute('server_group.group_join', [
         'node' => $entity->id(),
@@ -62,7 +67,9 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
       ];
     }
     // Here means that effectively it has access to see content.
-    else {
+    // If a membership exists, add its cache tags so future changes invalidate.
+    else if ($membership = $membership_manager->getMembership($entity, $current_user)) {
+      $build['#cache']['tags'] = Cache::mergeTags($build['#cache']['tags'], $membership->getCacheTags());
       // @todo: implement methods for rendering the rest of the fields.
       $build[] = ['#markup' => $entity->label()];
     }
