@@ -37,7 +37,6 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
     if ($current_user->isAnonymous()) {
       $build['server_group_subscribe_prompt'] = [
         '#markup' => $this->t('You must be an authenticated user and be in this group to view the content.'),
-        '#weight' => -1000,
         '#cache' => [
           'contexts' => ['user'],
           'tags' => $entity->getCacheTags(),
@@ -60,7 +59,6 @@ final class NodeGroup extends EntityViewBuilderPluginAbstract {
         '#name'   => $current_user->getDisplayName(),
         '#label'  => $entity->label(),
         '#url'    => $join_url->toString(),
-        '#weight' => -1000,
         '#cache'  => ['contexts' => ['user'], 'tags' => $entity->getCacheTags()],
       ];
 
