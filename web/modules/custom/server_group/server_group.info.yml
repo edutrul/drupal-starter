@@ -1,0 +1,9 @@
+name: "Server Group"
+type: module
+description: "Server Group feature -- Organic Groups"
+core_version_requirement: ^9 || ^10
+package: "server"
+
+dependencies:
+  - drupal:og
+  - drupal:pluggable_entity_view_builder

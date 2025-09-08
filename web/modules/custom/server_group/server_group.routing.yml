@@ -1,0 +1,8 @@
+server_group.group_join:
+  path: '/server-group/group/{node}/join'
+  defaults:
+    _controller: '\Drupal\server_group\Controller\JoinGroupController::join'
+    _title: 'Join group'
+  requirements:
+    _permission: 'access content'
+    node: '\d+'
