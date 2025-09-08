@@ -1,0 +1,68 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0941e2ea-adb1-46d2-8123-c87142bf2710
+  bundle: group
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Group A'
+  created:
+    -
+      value: 1757353568
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Group A | Drupal Starter'
+    -
+      tag: meta
+      attributes:
+        name: description
+        content: 'Loreum ipsum'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-starter.ddev.site:8880/node/1'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Group A'
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  body:
+    -
+      value: '<p>Loreum ipsum</p>'
+      format: basic_html
+      summary: ''
