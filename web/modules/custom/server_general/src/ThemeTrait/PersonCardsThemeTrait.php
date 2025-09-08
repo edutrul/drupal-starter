@@ -5,7 +5,7 @@ namespace Drupal\server_general\ThemeTrait;
 /**
  * Provides helper methods for rendering Person Cards elements.
  */
-trait PersonCardThemeTrait {
+trait PersonCardsThemeTrait {
 
   use ElementWrapThemeTrait;
 

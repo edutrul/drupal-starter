@@ -26,7 +26,7 @@ use Drupal\server_general\ThemeTrait\InfoCardThemeTrait;
 use Drupal\server_general\ThemeTrait\LinkThemeTrait;
 use Drupal\server_general\ThemeTrait\NewsTeasersThemeTrait;
 use Drupal\server_general\ThemeTrait\PeopleTeasersThemeTrait;
-use Drupal\server_general\ThemeTrait\PersonCardThemeTrait;
+use Drupal\server_general\ThemeTrait\PersonCardsThemeTrait;
 use Drupal\server_general\ThemeTrait\QuickLinksThemeTrait;
 use Drupal\server_general\ThemeTrait\QuoteThemeTrait;
 use Drupal\server_general\ThemeTrait\SearchThemeTrait;
@@ -59,7 +59,7 @@ class StyleGuideController extends ControllerBase {
   use LinkThemeTrait;
   use NewsTeasersThemeTrait;
   use PeopleTeasersThemeTrait;
-  use PersonCardThemeTrait;
+  use PersonCardsThemeTrait;
   use QuickLinksThemeTrait;
   use QuoteThemeTrait;
   use SearchThemeTrait;
