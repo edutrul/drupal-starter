@@ -230,3 +230,10 @@ Uses `drupal/default_content` module.
 2. `ddev drush en server_default_content -y`
 3. `ddev drush dcem server_default_content`
 4. Commit YAML files
+
+## Active Technologies
+- PHP 8.2 / YAML (default_content format) + `drupal/default_content`, paragraph bundles `accordion` + `accordion_item` (982-faq-technical-section)
+- YAML files under `web/modules/custom/server_default_content/content/node/` (982-faq-technical-section)
+
+## Recent Changes
+- 982-faq-technical-section: Added PHP 8.2 / YAML (default_content format) + `drupal/default_content`, paragraph bundles `accordion` + `accordion_item`

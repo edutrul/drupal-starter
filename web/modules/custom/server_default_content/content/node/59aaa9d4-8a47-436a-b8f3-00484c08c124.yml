@@ -759,6 +759,143 @@ default:
         _meta:
           version: '1.0'
           entity_type: paragraph
+          uuid: b2d75725-1c5d-470f-a9a2-978299b30ffb
+          bundle: accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1686167785
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          content_translation_source:
+            -
+              value: und
+          content_translation_outdated:
+            -
+              value: false
+          field_accordion_items:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 21c9bd0d-fdbe-49a4-b755-f14b95452ef4
+                  bundle: accordion_item
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1686167785
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  content_translation_source:
+                    -
+                      value: und
+                  content_translation_outdated:
+                    -
+                      value: false
+                  field_body:
+                    -
+                      value: 'Install DDEV, clone the repository, run <code>ddev start</code>, then <code>ddev drush deploy</code>. The site will be available at the DDEV-provided URL. Use <code>ddev login</code> to authenticate as the admin user.'
+                      format: basic_html
+                  field_title:
+                    -
+                      value: 'How do I set up this project locally with DDEV?'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 0f894a1b-be09-4899-95a9-e4e2d44e48ff
+                  bundle: accordion_item
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1686167785
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  content_translation_source:
+                    -
+                      value: und
+                  content_translation_outdated:
+                    -
+                      value: false
+                  field_body:
+                    -
+                      value: 'PEVB is a pattern used in this project to define all entity rendering in code via plugins, rather than through Drupal''s UI manage-display screens. This keeps rendering logic version-controlled and testable. See <code>web/modules/custom/server_general/src/Plugin/EntityViewBuilder/</code> for examples.'
+                      format: basic_html
+                  field_title:
+                    -
+                      value: 'What is the Pluggable Entity View Builder (PEVB) and why does this project use it?'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1d3a0a13-c0f1-4447-9961-910d3fd4aa7c
+                  bundle: accordion_item
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1686167785
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  content_translation_source:
+                    -
+                      value: und
+                  content_translation_outdated:
+                    -
+                      value: false
+                  field_body:
+                    -
+                      value: 'All tests run inside DDEV. Use <code>ddev phpunit</code> to run the full suite, or <code>ddev phpunit --filter TestClassName</code> to run a specific test. The preferred base class is <code>ExistingSiteBase</code> from Drupal Test Traits.'
+                      format: basic_html
+                  field_title:
+                    -
+                      value: 'How do I run the automated tests?'
+          field_body:
+            -
+              value: 'Got <em>technical</em> questions? Read below'
+              format: basic_html
+          field_title:
+            -
+              value: 'FAQ Technical'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
           uuid: f356ca22-1afa-4d39-a114-372584b9b7d7
           bundle: quick_links
           default_langcode: en
