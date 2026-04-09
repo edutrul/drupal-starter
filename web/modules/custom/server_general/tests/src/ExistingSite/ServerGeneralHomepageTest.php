@@ -12,8 +12,7 @@ class ServerGeneralHomepageTest extends ServerGeneralSelenium2TestBase {
    */
   public function testHomeFeaturedContent() {
     $this->drupalGet('<front>');
-    sleep(3); // pause 3 seconds so you can see the page
-
+    sleep(3);
 
     /** @var \Drupal\FunctionalJavascriptTests\JSWebAssert $web_assert */
     $web_assert = $this->assertSession();

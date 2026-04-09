@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Drupal\Tests\server_general\ExistingSite;
 
 use Drupal\Tests\server_general\Traits\FailureHtmlCaptureTrait;
+use Symfony\Component\HttpFoundation\Response;
 use weitzman\DrupalTestTraits\ExistingSiteBase;
 
 /**
- * Demonstrates automatic HTML capture on test failure via FailureHtmlCaptureTrait.
+ * Demonstrates automatic HTML capture on test failure.
  *
  * On failure, the current page HTML is saved to DTT_HTML_OUTPUT_DIRECTORY
  * and uploaded as a GitHub Actions artifact for inspection.
@@ -22,7 +23,7 @@ class ServerGeneralFailureCaptureTest extends ExistingSiteBase {
    */
   public function testFrontPageLoads(): void {
     $this->drupalGet('<front>');
-    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(Response::HTTP_OK);
   }
 
   /**
