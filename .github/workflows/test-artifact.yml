@@ -1,0 +1,20 @@
+name: test-artifact
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    name: "Test artifact"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create dummy artifact
+      run: |
+        mkdir -p test-html-output
+        echo "hello" > test-html-output/test.html
+    - name: Upload test failure artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-failure-${{ github.run_id }}
+        path: test-html-output/
+        if-no-files-found: ignore
