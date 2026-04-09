@@ -30,7 +30,7 @@ trait FailureCaptureTrait {
    * Captures page content while the Mink session is still alive.
    * Must run before parent::tearDown() which stops the session.
    */
-  protected function tearDown(): void {
+  public function tearDown(): void {
     try {
       // Screenshot works for Selenium/WebDriver drivers.
       $this->capturedContent = $this->getSession()->getDriver()->getScreenshot();
